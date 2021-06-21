@@ -31,8 +31,19 @@ app.post('/todo', (req, res) => {
 });
 
 app.delete('/todo/:id', (req, res) => {
+  res.setHeader("Content-Type","application/json");
   console.log("Processing DELETE Request");
-  res.send(`Deleted ${req.params.id}`);
+  if (store[req.params.id] === undefined){
+    res.status(404).send(
+      JSON.stringify({
+        error: "not found",
+      })
+    );
+    return;
+  }
+  let todo = store[req.params.id];
+  delete store[req.params.id];
+  res.send(JSON.stringify(todo));
 });
 
 app.patch('/todo/:id', (req, res) => {
