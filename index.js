@@ -20,7 +20,15 @@ app.get('/', (req, res) => {
 app.get('/todo/:id', (req, res) => {
   res.setHeader("Content-Type","application/json");
   console.log("Processing  get id Request");
-  res.send(`Here is your task ${req.params.id}`);
+  if (store[req.params.id] === undefined){
+    res.status(404).send(
+      JSON.stringify({
+        error: "not found",
+      })
+    );
+    return;
+  }
+  res.send(JSON.stringify(store[req.params.id]));
 });
 
 app.post('/todo', (req, res) => {
