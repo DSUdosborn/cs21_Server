@@ -42,7 +42,16 @@ app.patch('/todo/:id', (req, res) => {
 
 app.put('/todo/:id', (req, res) => {
   console.log("Processing PUT Request");
-  res.send(`Put ${req.params.id}`);
+  if (store[req.params.id] === undefined){
+    res.status(404).send(
+      JSON.stringify({
+        error: "not found",
+      })
+    );
+    return;
+  }
+  store[req.params.id] = req.body;
+  res.send(JSON.stringify(store[req.params.id]));
 });
 
 app.listen(portNum, () => {
