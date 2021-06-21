@@ -26,7 +26,6 @@ app.get('/todo/:id', (req, res) => {
 app.post('/todo', (req, res) => {
   res.setHeader("Content-Type","application/json");
   console.log("Processing POST Request");
-
   store[req.body.id] = req.body;
   res.send(JSON.stringify(store[req.body.id]));
 });
