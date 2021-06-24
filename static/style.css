@@ -1,0 +1,102 @@
+
+[v-cloak] {
+	display: none;
+}
+
+#app {
+	text-align: center;
+}
+
+h1,h2{
+	font-family: Roboto, sans-serif;
+}
+
+h1{
+	background-color: #000000;
+  font-weight: 700;
+	margin: 0, auto ;
+  color: white;
+}
+
+h2{
+  font-weight: 400;
+  margin-bottom:0;
+}
+
+.input_area input{
+  font-family: Lora, serif;
+	margin-bottom:15px;
+	width:80%;
+	height:35px;
+
+
+}
+.input_area{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color:#d3d3d3;
+
+}
+#todos {
+	width: 600px;
+	margin: 10px auto;
+	text-align: left;
+	max-height: 1000px;
+	padding: 20px;
+	padding-bottom: 0px;
+}
+
+.checkbox{
+	height:60px;
+	width:15px;
+	margin-left:20px;
+}
+
+.todo {
+  display:flex;
+  justify-content: space-between;
+	list-style: none;
+	border: 1px solid black;
+	padding: 2px;
+	margin-bottom: 2px;
+	background-color: white;
+}
+
+.todo input {
+	float: left;
+	margin-right: 15px;
+}
+
+.todo button {
+	margin-left:5px;
+}
+
+label{
+	margin-right:10px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
+
+.todo p {
+	display: inline;
+	margin-left: 10px;
+	padding: 0px;
+  font-family: 'Lora', serif;
+	font-weight: 200;
+	word-wrap: break-word;
+}
+
+button{
+	font-family: Roboto;
+  font-weight: 300;
+}
+
+.stackButtons{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.done{
+	text-decoration: line-through;
+}
