@@ -104,7 +104,11 @@ app.post("/todo", function (req, res) {
   let creatingTodo = {
     name: req.body.name || "",
     description: req.body.description || "",
+    linkType: req.body.linkType || "",
+    instructions: req.body.instructions || "",
     done: req.body.done || false,
+    assigned: req.body.assigned || new Date(),
+    updated: req.body.updated || new Date(),
     deadline: req.body.deadline || new Date(),
   };
 

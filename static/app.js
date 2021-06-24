@@ -33,12 +33,6 @@ var app = new Vue ({
 
     methods:{
 
-        addNewTask: function(){
-
-                this.todos.unshift( new_todo );
-                this.new_todo = "";
-        },
-
         addNewTodo: function(){
           var request_body = {
               name: this.new_todo_name,
