@@ -1,11 +1,27 @@
 const mongoose = require("mongoose");
 
+//  Default item
+// name:"Get groceries",
+// description: "Go to this store blah blah",
+// linkType: "Web Page",
+// instructions: "https://dsudosborn.github.io",
+// done: false,
+// assigned: new Date().toLocaleDateString(),
+// updated: new Date().toLocaleDateString(),
+// deadline: new Date().toLocaleDateString()
+
+
 const todoSchema = mongoose.Schema({
   name: String,
   description: String,
+  linkType: String,
+  instructions: String,
   done: Boolean,
+  assigned: Date,
+  updated: Date,
   deadline: Date,
 });
+
 
 const Todo = mongoose.model("Todo", todoSchema);
 
