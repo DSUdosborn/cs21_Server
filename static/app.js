@@ -10,7 +10,6 @@ var app = new Vue ({
                 linkType: "Web Page",
                 instructions: "https://dsudosborn.github.io",
                 done: false,
-                editing: false,
                 assigned: new Date().toLocaleDateString(),
                 updated: new Date().toLocaleDateString(),
                 deadline: new Date().toLocaleDateString()
@@ -21,6 +20,7 @@ var app = new Vue ({
         new_todo_description: "",
         new_todo_instructions: "https://dsudosborn.github.io",
         new_todo_linkType: "Google Doc",
+        new_todo_done: false,
         new_todo_deadline: "",
         new_todo_assigned: "",
         new_todo_updated: "",
@@ -34,27 +34,21 @@ var app = new Vue ({
     methods:{
 
         addNewTask: function(){
-                var new_todo = {
-                    name: this.new_todo_name,
-                    description: this.new_todo_description,
-                    instructions: this.new_todo_instructions,
-                    done: false,
-                    editing: false,
-                    deadline: this.new_todo_deadline,
-                    assigned: this.new_todo_assigned,
-                    updated: this.new_todo_updated
-                };
+
                 this.todos.unshift( new_todo );
                 this.new_todo = "";
         },
 
         addNewTodo: function(){
-            var request_body= {
-                name: this.new_todo_name,
-                description: this.new_todo_description,
-                done: false,
-                deadline: this.new_todo_deadline
-            };
+          var request_body = {
+              name: this.new_todo_name,
+              description: this.new_todo_description,
+              instructions: this.new_todo_instructions,
+              done: false,
+              deadline: this.new_todo_deadline,
+              assigned: this.new_todo_assigned,
+              updated: this.new_todo_updated
+          };
             fetch(`${serverURL}/todo`,{
                 method:"POST",
                 headers:{
@@ -69,7 +63,10 @@ var app = new Vue ({
                 }else if(response.status == 201){
                     app.new_todo_name="";
                     app.new_todo_description="";
+                    app.new_todo_instructions="";
                     app.new_todo_deadline="";
+                    app.new_todo_assigned="";
+                    app.new_todo_updated="";
                     app.getTodos();
                 }
             });
@@ -102,10 +99,13 @@ var app = new Vue ({
 
         saveTodo: function(todo){
           var post_body= {
-              name: todo.name,
-              description: todo.description,
-              done: todo.done,
-              deadline: todo.deadline
+            name: todo.name,
+            description: todo.description,
+            instructions: todo.instructions,
+            done: false,
+            deadline: todo.deadline,
+            assigned: todo.assigned,
+            updated: todo.updated
           };
           fetch(`${serverURL}/todo` + todo._id, {
               method:"PUT",
