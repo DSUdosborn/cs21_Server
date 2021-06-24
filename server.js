@@ -4,6 +4,8 @@
 // import express so you can use it
 const express = require("express");
 const { store, Todo } = require("./model");
+// local file storage
+const fs = require('fs');
 // instantiate your app/server
 const app = express();
 
@@ -203,8 +205,9 @@ app.put("/todo/:id", function (req, res) {
 
   Todo.updateOne(
     { _id: req.params.id },
-    { $set: { updateTodo } },
+    { $set:  updateTodo } ,
     function (err, updateOneResponse) {
+    console.log(updateOneResponse);
       if (err) {
         console.log(`unable to replace todo`);
         res.status(500).json({
@@ -212,7 +215,9 @@ app.put("/todo/:id", function (req, res) {
           error: err,
         });
         return;
+
       } else if (updateOneResponse.n === 0) {
+
         console.log(`unable to replace todo with id ${req.params.id}`);
         res.status(404).json({
           message: `todo with id ${req.params.id} not found`,

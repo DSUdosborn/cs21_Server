@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 function connect(callback) {
-  let connectionString = `mongodb+srv://todo_2021:mycoolpassword@cluster0.jdtxt.mongodb.net/todo_2021?retryWrites=true&w=majority`;
+  let connectionString = `mongodb+srv://dz:0penS1mian1@firstcluster.yqwhp.mongodb.net/FirstCluster?retryWrites=true&w=majority`;
 
   console.log("connect to db....");
 
