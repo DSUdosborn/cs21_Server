@@ -4,7 +4,7 @@
   "description": "Codeschool 2021 node express mongoose server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dAo",
