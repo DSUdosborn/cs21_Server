@@ -5,21 +5,14 @@ var app = new Vue ({
     data:{
         todos:[
             {
-                name:"Get groceries",
-                description: "Go to this store blah blah",
-                linkType: "Web Page",
-                instructions: "https://dsudosborn.github.io",
-                done: false,
-                assigned: new Date().toLocaleDateString(),
-                updated: new Date().toLocaleDateString(),
-                deadline: new Date().toLocaleDateString()
+
             },
 
         ],
         new_todo_name: "",
         new_todo_description: "",
-        new_todo_instructions: "https://dsudosborn.github.io",
-        new_todo_linkType: "Google Doc",
+        new_todo_instructions: "",
+        new_todo_linkType: "",
         new_todo_done: false,
         new_todo_deadline: "",
         new_todo_assigned: "",
