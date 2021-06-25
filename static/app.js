@@ -38,6 +38,7 @@ var app = new Vue ({
               name: this.new_todo_name,
               description: this.new_todo_description,
               instructions: this.new_todo_instructions,
+              linkType: this.new_todo_linkType,
               done: false,
               deadline: this.new_todo_deadline,
               assigned: this.new_todo_assigned,
@@ -58,6 +59,7 @@ var app = new Vue ({
                     app.new_todo_name="";
                     app.new_todo_description="";
                     app.new_todo_instructions="";
+                    app.new_todo_linkType="";
                     app.new_todo_deadline="";
                     app.new_todo_assigned="";
                     app.new_todo_updated="";
