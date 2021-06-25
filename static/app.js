@@ -97,7 +97,7 @@ var app = new Vue ({
             assigned: todo.assigned,
             updated: todo.updated
           };
-          fetch(`${serverURL}/todo` + todo._id, {
+          fetch(`${serverURL}/todo/` + todo._id, {
               method:"PUT",
               headers:{
                   "Content-Type":"application/json"
