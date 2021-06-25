@@ -96,6 +96,7 @@ var app = new Vue ({
             name: todo.name,
             description: todo.description,
             instructions: todo.instructions,
+            linkType: todo.linkType,
             done: false,
             deadline: todo.deadline,
             assigned: todo.assigned,
