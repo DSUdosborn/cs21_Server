@@ -71,7 +71,8 @@ var app = new Vue ({
         },
 
         deleteTodo: function ( todo ) {
-             fetch(`${serverURL}/todo/` + todo._id,{
+          console.log(todo);
+             fetch(`${serverURL}/todo/` + todo._id, {
                  method:"DELETE",
                  headers:{
                      "Content-Type":"application/json"
