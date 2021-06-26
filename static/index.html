@@ -40,8 +40,8 @@
             <label>Updated</label>
             <input type="date" v-model="new_todo_updated" placeholder="Task Assigned"><br>
 
-            <label>Deadline</label>
-            <input type="date" v-model="new_todo_deadline" placeholder="Task Deadline"><br>
+            <label>expired</label>
+            <input type="date" v-model="new_todo_expired" placeholder="Task expired"><br>
 
             <button v-on:click="addNewTodo( )">Create</button>
 
@@ -58,13 +58,13 @@
                     <input type= "text" v-model= "todo.linkType">
                     <input type= "text" v-model= "todo.assigned">
                     <input type= "text" v-model= "todo.updated">
-                    <input type= "text" v-model= "todo.deadline">
+                    <input type= "text" v-model= "todo.expired">
                 </div>
                 <div v-else v-bind:class="{ done: todo.done }">
                     <p> <b>{{ todo.name }} </b></p><br>
                     <p> {{ todo.description }} </p><br>
                     <p> <a v-bind:href="todo.instructions">{{todo.linkType}}</a></p><br>
-                    <p> {{ todo.deadline }} </p><br>
+                    <p> {{ todo.expired }} </p><br>
                 </div>
                 <div v-if="todo.editing" class="stackButtons">
                     <button v-on:click="saveTodo(todo)">Save</button>

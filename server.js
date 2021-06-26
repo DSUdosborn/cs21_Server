@@ -43,10 +43,10 @@ app.get("/todo", (req, res) => {
   }
 
   if (
-    req.query.afterDeadline !== null &&
-    req.query.afterDeadline !== undefined
+    req.query.afterexpired !== null &&
+    req.query.afterexpired !== undefined
   ) {
-    findQuery.$deadline = { $gt: new ISODate(req.query.afterDeadline) };
+    findQuery.$expired = { $gt: new ISODate(req.query.afterexpired) };
   }
 
   console.log("getting all todos with find query", findQuery);
@@ -109,7 +109,7 @@ app.post("/todo", function (req, res) {
     done: req.body.done || false,
     assigned: req.body.assigned || new Date(),
     updated: req.body.updated || new Date(),
-    deadline: req.body.deadline || new Date(),
+    expired: req.body.expired || new Date(),
   };
 
   Todo.create(creatingTodo, (err, todo) => {
@@ -165,9 +165,9 @@ app.patch("/todo/:id", function (req, res) {
   if (req.body.description !== null && req.body.description !== undefined) {
     updateTodo.description = req.body.description;
   }
-  // deadline
-  if (req.body.deadline !== null && req.body.deadline !== undefined) {
-    updateTodo.deadline = req.body.deadline;
+  // expired
+  if (req.body.expired !== null && req.body.expired !== undefined) {
+    updateTodo.expired = req.body.expired;
   }
   // done
   if (req.body.done !== null && req.body.done !== undefined) {
@@ -208,7 +208,7 @@ app.put("/todo/:id", function (req, res) {
     name: req.body.name || "",
     description: req.body.description || "",
     done: req.body.done || false,
-    deadline: req.body.deadline || new Date(),
+    expired: req.body.expired || new Date(),
   };
 
   Todo.updateOne(

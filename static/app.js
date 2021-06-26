@@ -14,7 +14,7 @@ var app = new Vue ({
         new_todo_instructions: "",
         new_todo_linkType: "",
         new_todo_done: false,
-        new_todo_deadline: "",
+        new_todo_expired: "",
         new_todo_assigned: "",
         new_todo_updated: "",
 
@@ -33,7 +33,7 @@ var app = new Vue ({
               instructions: this.new_todo_instructions,
               linkType: this.new_todo_linkType,
               done: false,
-              deadline: this.new_todo_deadline,
+              expired: this.new_todo_expired,
               assigned: this.new_todo_assigned,
               updated: this.new_todo_updated
           };
@@ -53,7 +53,7 @@ var app = new Vue ({
                     app.new_todo_description="";
                     app.new_todo_instructions="";
                     app.new_todo_linkType="";
-                    app.new_todo_deadline="";
+                    app.new_todo_expired="";
                     app.new_todo_assigned="";
                     app.new_todo_updated="";
                     app.getTodos();
@@ -93,7 +93,7 @@ var app = new Vue ({
             instructions: todo.instructions,
             linkType: todo.linkType,
             done: false,
-            deadline: todo.deadline,
+            expired: todo.expired,
             assigned: todo.assigned,
             updated: todo.updated
           };

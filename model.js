@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 // done: false,
 // assigned: new Date().toLocaleDateString(),
 // updated: new Date().toLocaleDateString(),
-// deadline: new Date().toLocaleDateString()
+// expired: new Date().toLocaleDateString()
 
 
 const todoSchema = mongoose.Schema({
@@ -19,7 +19,7 @@ const todoSchema = mongoose.Schema({
   done: Boolean,
   assigned: Date,
   updated: Date,
-  deadline: Date,
+  expired: Date,
 });
 
 
