@@ -3,7 +3,7 @@
 
 // import express so you can use it
 const express = require("express");
-const { store, Todo } = require("./model");
+const { store, link } = require("./model");
 // local file storage
 const fs = require('fs');
 const cors = require("cors");
@@ -32,8 +32,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Get - gets all of the todos (does not have a URL param)
-app.get("/todo", (req, res) => {
+// Get - gets all of the links (does not have a URL param)
+app.get("/link", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let findQuery = {};
 
@@ -49,59 +49,59 @@ app.get("/todo", (req, res) => {
     findQuery.$expired = { $gt: new ISODate(req.query.afterexpired) };
   }
 
-  console.log("getting all todos with find query", findQuery);
-  // return all of the todos in the store
+  console.log("getting all links with find query", findQuery);
+  // return all of the links in the store
 
-  Todo.find(findQuery, function (err, todos) {
+  link.find(findQuery, function (err, links) {
     // check if there was an error
     if (err) {
-      console.log(`there was an error listing todos`, err);
+      console.log(`there was an error listing links`, err);
       // send back the error
-      res.status(500).json({ message: `unable to list todos`, error: err });
+      res.status(500).json({ message: `unable to list links`, error: err });
       return;
     }
-    // success!!! return all the todos
-    res.status(200).json(todos);
+    // success!!! return all the links
+    res.status(200).json(links);
   });
 });
 
-// Get - gets the todo with the given id
-app.get("/todo/:id", function (req, res) {
+// Get - gets the link with the given id
+app.get("/link/:id", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  console.log(`getting todo with id: ${req.params.id}`);
-  Todo.findById(req.params.id, (err, todo) => {
+  console.log(`getting link with id: ${req.params.id}`);
+  link.findById(req.params.id, (err, link) => {
     // check if there was an error
     if (err) {
       console.log(
-        `there was an error finding a todo with id ${req.params.id}`,
+        `there was an error finding a link with id ${req.params.id}`,
         err
       );
       // send back the error
       res.status(500).json({
-        message: `unable to find todo with id ${req.params.id}`,
+        message: `unable to find link with id ${req.params.id}`,
         error: err,
       });
-    } else if (todo === null) {
-      console.log(`unable to find todo with id ${req.params.id}`);
+    } else if (link === null) {
+      console.log(`unable to find link with id ${req.params.id}`);
       res.status(404).json({
-        message: `todo with id ${req.params.id} not found`,
+        message: `link with id ${req.params.id} not found`,
         error: err,
       });
     } else {
-      // success!!!! return the todo
-      res.status(200).json(todo);
+      // success!!!! return the link
+      res.status(200).json(link);
     }
   });
 });
 
 let nextID = 0;
 
-// Post - crates one todo (does not have a URL param)
-app.post("/todo", function (req, res) {
+// Post - crates one link (does not have a URL param)
+app.post("/link", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  console.log(`creating a todo with body`, req.body);
+  console.log(`creating a link with body`, req.body);
 
-  let creatingTodo = {
+  let creatinglink = {
     name: req.body.name || "",
     description: req.body.description || "",
     linkType: req.body.linkType || "",
@@ -112,85 +112,85 @@ app.post("/todo", function (req, res) {
     expired: req.body.expired || new Date(),
   };
 
-  Todo.create(creatingTodo, (err, todo) => {
+  link.create(creatinglink, (err, link) => {
     // check if there is an error
     if (err) {
-      console.log(`unable to create todo`);
+      console.log(`unable to create link`);
       res.status(500).json({
-        message: "unable to create todo",
+        message: "unable to create link",
         error: err,
       });
       return;
     }
-    // success!!! return the todo
-    res.status(201).json(todo);
+    // success!!! return the link
+    res.status(201).json(link);
   });
 });
 
-// Delete - deletes the todo with the given id
-app.delete("/todo/:id", function (req, res) {
+// Delete - deletes the link with the given id
+app.delete("/link/:id", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  console.log(`deleting todo with id: ${req.params.id}`);
+  console.log(`deleting link with id: ${req.params.id}`);
 
-  Todo.findByIdAndDelete(req.params.id, function (err, todo) {
+  link.findByIdAndDelete(req.params.id, function (err, link) {
     if (err) {
-      console.log(`unable to delete todo`);
+      console.log(`unable to delete link`);
       res.status(500).json({
-        message: "unable to delete todo",
+        message: "unable to delete link",
         error: err,
       });
       return;
-    } else if (todo === null) {
-      console.log(`unable to delete todo with id ${req.params.id}`);
+    } else if (link === null) {
+      console.log(`unable to delete link with id ${req.params.id}`);
       res.status(404).json({
-        message: `todo with id ${req.params.id} not found`,
+        message: `link with id ${req.params.id} not found`,
         error: err,
       });
     } else {
-      res.status(200).json(todo);
+      res.status(200).json(link);
     }
   });
 });
 
-// Patch - updates the todo with the given id
-app.patch("/todo/:id", function (req, res) {
-  console.log(`updating todo with id: ${req.params.id} with body`, req.body);
+// Patch - updates the link with the given id
+app.patch("/link/:id", function (req, res) {
+  console.log(`updating link with id: ${req.params.id} with body`, req.body);
 
-  let updateTodo = {};
+  let updatelink = {};
   // name
   if (req.body.name !== null && req.body.name !== undefined) {
-    updateTodo.name = req.body.name;
+    updatelink.name = req.body.name;
   }
   // description
   if (req.body.description !== null && req.body.description !== undefined) {
-    updateTodo.description = req.body.description;
+    updatelink.description = req.body.description;
   }
   // expired
   if (req.body.expired !== null && req.body.expired !== undefined) {
-    updateTodo.expired = req.body.expired;
+    updatelink.expired = req.body.expired;
   }
   // done
   if (req.body.done !== null && req.body.done !== undefined) {
-    updateTodo.done = req.body.done;
+    updatelink.done = req.body.done;
   }
 
-  Todo.updateOne(
+  link.updateOne(
     { _id: req.params.id },
     {
-      $set: updateTodo,
+      $set: updatelink,
     },
     function (err, updateOneResponse) {
       if (err) {
-        console.log(`unable to patch todo`);
+        console.log(`unable to patch link`);
         res.status(500).json({
-          message: "unable to patch todo",
+          message: "unable to patch link",
           error: err,
         });
         return;
       } else if (updateOneResponse.n === 0) {
-        console.log(`unable to patch todo with id ${req.params.id}`);
+        console.log(`unable to patch link with id ${req.params.id}`);
         res.status(404).json({
-          message: `todo with id ${req.params.id} not found`,
+          message: `link with id ${req.params.id} not found`,
           error: err,
         });
       } else {
@@ -200,35 +200,35 @@ app.patch("/todo/:id", function (req, res) {
   );
 });
 
-// Put - replaces the todo with the given id`
-app.put("/todo/:id", function (req, res) {
-  console.log(`replacing todo with id: ${req.params.id} with body`, req.body);
+// Put - replaces the link with the given id`
+app.put("/link/:id", function (req, res) {
+  console.log(`replacing link with id: ${req.params.id} with body`, req.body);
 
-  let updateTodo = {
+  let updatelink = {
     name: req.body.name || "",
     description: req.body.description || "",
     done: req.body.done || false,
     expired: req.body.expired || new Date(),
   };
 
-  Todo.updateOne(
+  link.updateOne(
     { _id: req.params.id },
-    { $set:  updateTodo } ,
+    { $set:  updatelink } ,
     function (err, updateOneResponse) {
     console.log(updateOneResponse);
       if (err) {
-        console.log(`unable to replace todo`);
+        console.log(`unable to replace link`);
         res.status(500).json({
-          message: "unable to replace todo",
+          message: "unable to replace link",
           error: err,
         });
         return;
 
       } else if (updateOneResponse.n === 0) {
 
-        console.log(`unable to replace todo with id ${req.params.id}`);
+        console.log(`unable to replace link with id ${req.params.id}`);
         res.status(404).json({
-          message: `todo with id ${req.params.id} not found`,
+          message: `link with id ${req.params.id} not found`,
           error: err,
         });
       } else {

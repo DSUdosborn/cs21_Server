@@ -12,67 +12,67 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <title>Heroku Todo</title>
+    <title>Heroku link</title>
 
 </head>
 
     <div id="app" v-cloak>
 
-        <h1>Todo App</h1>
+        <h1>link App</h1>
 
         <div class="input_area">
 
             <label>Name</label>
-            <input type="text" v-model="new_todo_name" placeholder="Task Name"><br>
+            <input type="text" v-model="new_link_name" placeholder="Task Name"><br>
 
             <label>Description</label>
-            <input type="text" v-model="new_todo_description" placeholder="Task Description"><br>
+            <input type="text" v-model="new_link_description" placeholder="Task Description"><br>
 
             <label>Instructions</label>
-            <input type="url" v-model="new_todo_instructions" placeholder="Task Instructions"><br>
+            <input type="url" v-model="new_link_instructions" placeholder="Task Instructions"><br>
 
             <label>Link Type</label>
-            <input type="text" v-model="new_todo_linkType" placeholder="Link type"><br>
+            <input type="text" v-model="new_link_linkType" placeholder="Link type"><br>
 
             <label>Assigned</label>
-            <input type="date" v-model="new_todo_assigned" placeholder="Task Assigned"><br>
+            <input type="date" v-model="new_link_assigned" placeholder="Task Assigned"><br>
 
             <label>Updated</label>
-            <input type="date" v-model="new_todo_updated" placeholder="Task Assigned"><br>
+            <input type="date" v-model="new_link_updated" placeholder="Task Assigned"><br>
 
             <label>expired</label>
-            <input type="date" v-model="new_todo_expired" placeholder="Task expired"><br>
+            <input type="date" v-model="new_link_expired" placeholder="Task expired"><br>
 
-            <button v-on:click="addNewTodo( )">Create</button>
+            <button v-on:click="addNewlink( )">Create</button>
 
         </div>
 
-        <ul id="todos">
-            <li class="todo" v-for="(todo,index) in todos">
-                <input class="checkbox" type="checkbox" v-model ="todo.done">
+        <ul id="links">
+            <li class="link" v-for="(link,index) in links">
+                <input class="checkbox" type="checkbox" v-model ="link.done">
 
-                <div v-if="todo.editing">
-                    <input type= "text" v-model= "todo.name">
-                    <input type= "text" v-model= "todo.description">
-                    <input type= "url" v-model= "todo.instructions">
-                    <input type= "text" v-model= "todo.linkType">
-                    <input type= "text" v-model= "todo.assigned">
-                    <input type= "text" v-model= "todo.updated">
-                    <input type= "text" v-model= "todo.expired">
+                <div v-if="link.editing">
+                    <input type= "text" v-model= "link.name">
+                    <input type= "text" v-model= "link.description">
+                    <input type= "url" v-model= "link.instructions">
+                    <input type= "text" v-model= "link.linkType">
+                    <input type= "text" v-model= "link.assigned">
+                    <input type= "text" v-model= "link.updated">
+                    <input type= "text" v-model= "link.expired">
                 </div>
-                <div v-else v-bind:class="{ done: todo.done }">
-                    <p> <b>{{ todo.name }} </b></p><br>
-                    <p> {{ todo.description }} </p><br>
-                    <p> <a v-bind:href="todo.instructions">{{todo.linkType}}</a></p><br>
-                    <p> {{ todo.expired }} </p><br>
+                <div v-else v-bind:class="{ done: link.done }">
+                    <p> <b>{{ link.name }} </b></p><br>
+                    <p> {{ link.description }} </p><br>
+                    <p> <a v-bind:href="link.instructions">{{link.linkType}}</a></p><br>
+                    <p> {{ link.expired }} </p><br>
                 </div>
-                <div v-if="todo.editing" class="stackButtons">
-                    <button v-on:click="saveTodo(todo)">Save</button>
-                    <button v-on:click="cancelSave(todo)">Cancel</button>
+                <div v-if="link.editing" class="stackButtons">
+                    <button v-on:click="savelink(link)">Save</button>
+                    <button v-on:click="cancelSave(link)">Cancel</button>
                 </div>
                 <div v-else class="stackButtons">
-                    <button v-on:click="editTodo(todo)">Edit</button>
-                    <button v-on:click="deleteTodo(todo)">Delete</button>
+                    <button v-on:click="editlink(link)">Edit</button>
+                    <button v-on:click="deletelink(link)">Delete</button>
                 </div>
             </li>
         </ul>

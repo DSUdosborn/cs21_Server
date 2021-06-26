@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 // expired: new Date().toLocaleDateString()
 
 
-const todoSchema = mongoose.Schema({
+const linkSchema = mongoose.Schema({
   name: String,
   description: String,
   linkType: String,
@@ -23,11 +23,11 @@ const todoSchema = mongoose.Schema({
 });
 
 
-const Todo = mongoose.model("Todo", todoSchema);
+const link = mongoose.model("link", linkSchema);
 
 let store = {};
 
 module.exports = {
-  Todo,
+  link,
   store,
 };

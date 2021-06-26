@@ -1,43 +1,43 @@
-var serverURL = "https://cs2021tododz.herokuapp.com";
+var serverURL = "https://cs2021linkdz.herokuapp.com";
 
 var app = new Vue ({
         el:"#app",
     data:{
-        todos:[
+        links:[
             {
 
             },
 
         ],
-        new_todo_name: "",
-        new_todo_description: "",
-        new_todo_instructions: "",
-        new_todo_linkType: "",
-        new_todo_done: false,
-        new_todo_expired: "",
-        new_todo_assigned: "",
-        new_todo_updated: "",
+        new_link_name: "",
+        new_link_description: "",
+        new_link_instructions: "",
+        new_link_linkType: "",
+        new_link_done: false,
+        new_link_expired: "",
+        new_link_assigned: "",
+        new_link_updated: "",
 
         },
 
     created: function(){
-      this.getTodos();
+      this.getlinks();
     },
 
     methods:{
 
-        addNewTodo: function(){
+        addNewlink: function(){
           var request_body = {
-              name: this.new_todo_name,
-              description: this.new_todo_description,
-              instructions: this.new_todo_instructions,
-              linkType: this.new_todo_linkType,
+              name: this.new_link_name,
+              description: this.new_link_description,
+              instructions: this.new_link_instructions,
+              linkType: this.new_link_linkType,
               done: false,
-              expired: this.new_todo_expired,
-              assigned: this.new_todo_assigned,
-              updated: this.new_todo_updated
+              expired: this.new_link_expired,
+              assigned: this.new_link_assigned,
+              updated: this.new_link_updated
           };
-            fetch(`${serverURL}/todo`,{
+            fetch(`${serverURL}/link`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -49,72 +49,72 @@ var app = new Vue ({
                         alert(data.msg)
                     })
                 }else if(response.status == 201){
-                    app.new_todo_name="";
-                    app.new_todo_description="";
-                    app.new_todo_instructions="";
-                    app.new_todo_linkType="";
-                    app.new_todo_expired="";
-                    app.new_todo_assigned="";
-                    app.new_todo_updated="";
-                    app.getTodos();
+                    app.new_link_name="";
+                    app.new_link_description="";
+                    app.new_link_instructions="";
+                    app.new_link_linkType="";
+                    app.new_link_expired="";
+                    app.new_link_assigned="";
+                    app.new_link_updated="";
+                    app.getlinks();
                 }
             });
 
         },
 
-        getTodos: function(){
-          fetch(`${serverURL}/todo`).then(function(response){
+        getlinks: function(){
+          fetch(`${serverURL}/link`).then(function(response){
             response.json().then(function(data){
-              app.todos = data;
+              app.links = data;
             })
           })
         },
 
-        deleteTodo: function ( todo ) {
-             fetch(`${serverURL}/todo/` + todo._id, {
+        deletelink: function ( link ) {
+             fetch(`${serverURL}/link/` + link._id, {
                  method:"DELETE",
                  headers:{
                      "Content-Type":"application/json"
                  }
              }).then(function(){
-                 app.getTodos()})
+                 app.getlinks()})
 
          },
 
-        editTodo: function(todo){
-          console.log("set todo.editing");
-            this.$set(todo, "editing", true);
+        editlink: function(link){
+          console.log("set link.editing");
+            this.$set(link, "editing", true);
         },
 
-        saveTodo: function(todo){
+        savelink: function(link){
           var post_body= {
-            name: todo.name,
-            description: todo.description,
-            instructions: todo.instructions,
-            linkType: todo.linkType,
+            name: link.name,
+            description: link.description,
+            instructions: link.instructions,
+            linkType: link.linkType,
             done: false,
-            expired: todo.expired,
-            assigned: todo.assigned,
-            updated: todo.updated
+            expired: link.expired,
+            assigned: link.assigned,
+            updated: link.updated
           };
-          fetch(`${serverURL}/todo/` + todo._id, {
+          fetch(`${serverURL}/link/` + link._id, {
               method:"PUT",
               headers:{
                   "Content-Type":"application/json"
               },
               body:JSON.stringify(post_body)
             });
-            this.$set(todo, "editing" ,false);
+            this.$set(link, "editing" ,false);
 
         },
 
-        cancelSave: function(todo) {
-            todo.editing = false;
+        cancelSave: function(link) {
+            link.editing = false;
 
         },
 
         saveList: function() {
-          localStorage.setItem("LocalTaskList", JSON.stringify(todos));
+          localStorage.setItem("LocalTaskList", JSON.stringify(links));
         }
 
     }
