@@ -11,7 +11,7 @@ var app = new Vue ({
         ],
         new_link_name: "",
         new_link_description: "",
-        new_link_instructions: "",
+        new_link_urls: "",
         new_link_linkType: "",
         new_link_done: false,
         new_link_expired: "",
@@ -30,7 +30,7 @@ var app = new Vue ({
           var request_body = {
               name: this.new_link_name,
               description: this.new_link_description,
-              instructions: this.new_link_instructions,
+              urls: this.new_link_urls,
               linkType: this.new_link_linkType,
               done: false,
               expired: this.new_link_expired,
@@ -51,7 +51,7 @@ var app = new Vue ({
                 }else if(response.status == 201){
                     app.new_link_name="";
                     app.new_link_description="";
-                    app.new_link_instructions="";
+                    app.new_link_urls="";
                     app.new_link_linkType="";
                     app.new_link_expired="";
                     app.new_link_assigned="";
@@ -90,7 +90,7 @@ var app = new Vue ({
           var post_body= {
             name: link.name,
             description: link.description,
-            instructions: link.instructions,
+            urls: link.urls,
             linkType: link.linkType,
             done: false,
             expired: link.expired,

@@ -23,13 +23,13 @@
         <div class="input_area">
 
             <label>Name</label>
-            <input type="text" v-model="new_link_name" placeholder="Task Name"><br>
+            <input type="text" v-model="new_link_name" placeholder="Link Name"><br>
 
             <label>Description</label>
-            <input type="text" v-model="new_link_description" placeholder="Task Description"><br>
+            <input type="text" v-model="new_link_description" placeholder="Link Description"><br>
 
-            <label>Instructions</label>
-            <input type="url" v-model="new_link_instructions" placeholder="Task Instructions"><br>
+            <label>urls</label>
+            <input type="url" v-model="new_link_urls" placeholder="Link urls"><br
 
             <label>Link Type</label>
             <input type="text" v-model="new_link_linkType" placeholder="Link type"><br>
@@ -54,7 +54,7 @@
                 <div v-if="link.editing">
                     <input type= "text" v-model= "link.name">
                     <input type= "text" v-model= "link.description">
-                    <input type= "url" v-model= "link.instructions">
+                    <input type= "url" v-model= "link.urls">
                     <input type= "text" v-model= "link.linkType">
                     <input type= "text" v-model= "link.assigned">
                     <input type= "text" v-model= "link.updated">
@@ -63,7 +63,7 @@
                 <div v-else v-bind:class="{ done: link.done }">
                     <p> <b>{{ link.name }} </b></p><br>
                     <p> {{ link.description }} </p><br>
-                    <p> <a v-bind:href="link.instructions">{{link.linkType}}</a></p><br>
+                    <p> <a v-bind:href="link.urls">{{link.linkType}}</a></p><br>
                     <p> {{ link.expired }} </p><br>
                 </div>
                 <div v-if="link.editing" class="stackButtons">
