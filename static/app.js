@@ -21,12 +21,12 @@ var app = new Vue ({
         },
 
     created: function(){
-      this.getlinks();
+      this.getLinks();
     },
 
     methods:{
 
-        addNewlink: function(){
+        addNewLink: function(){
           var request_body = {
               name: this.new_link_name,
               description: this.new_link_description,
@@ -62,7 +62,7 @@ var app = new Vue ({
 
         },
 
-        getlinks: function(){
+        getLinks: function(){
           fetch(`${serverURL}/link`).then(function(response){
             response.json().then(function(data){
               app.links = data;
@@ -70,7 +70,7 @@ var app = new Vue ({
           })
         },
 
-        deletelink: function ( link ) {
+        deleteLink: function ( link ) {
              fetch(`${serverURL}/link/` + link._id, {
                  method:"DELETE",
                  headers:{
@@ -81,12 +81,12 @@ var app = new Vue ({
 
          },
 
-        editlink: function(link){
+        editLink: function(link){
           console.log("set link.editing");
             this.$set(link, "editing", true);
         },
 
-        savelink: function(link){
+        saveLink: function(link){
           var post_body= {
             name: link.name,
             description: link.description,
