@@ -1,4 +1,4 @@
-var serverURL = "https://cs2021linkdz.herokuapp.com";
+var serverURL = "https://cs2021tododz.herokuapp.com";
 
 var app = new Vue ({
         el:"#app",
