@@ -37,7 +37,7 @@ h2{
 	background-color:#d3d3d3;
 
 }
-#todos {
+#links {
 	width: 600px;
 	margin: 10px auto;
 	text-align: left;
@@ -52,7 +52,7 @@ h2{
 	margin-left:20px;
 }
 
-.todo {
+.link {
   display:flex;
   justify-content: space-between;
 	list-style: none;
@@ -62,12 +62,12 @@ h2{
 	background-color: white;
 }
 
-.todo input {
+.link input {
 	float: left;
 	margin-right: 15px;
 }
 
-.todo button {
+.link button {
 	margin-left:5px;
 }
 
@@ -77,7 +77,7 @@ label{
   font-weight: 400;
 }
 
-.todo p {
+.link p {
 	display: inline;
 	margin-left: 10px;
 	padding: 0px;
