@@ -3,7 +3,7 @@
 
 // import express so you can use it
 const express = require("express");
-const { store, link } = require("./model");
+const Link  = require("./model");
 // local file storage
 const fs = require('fs');
 const cors = require("cors");
@@ -52,7 +52,7 @@ app.get("/link", (req, res) => {
   console.log("getting all links with find query", findQuery);
   // return all of the links in the store
 
-  link.find(findQuery, function (err, links) {
+  Link.find(findQuery, function (err, links) {
     // check if there was an error
     if (err) {
       console.log(`there was an error listing links`, err);
@@ -69,7 +69,7 @@ app.get("/link", (req, res) => {
 app.get("/link/:id", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   console.log(`getting link with id: ${req.params.id}`);
-  link.findById(req.params.id, (err, link) => {
+  Link.findById(req.params.id, (err, link) => {
     // check if there was an error
     if (err) {
       console.log(
@@ -112,7 +112,7 @@ app.post("/link", function (req, res) {
     expired: req.body.expired || new Date(),
   };
 
-  link.create(creatinglink, (err, link) => {
+  Link.create(creatinglink, (err, link) => {
     // check if there is an error
     if (err) {
       console.log(`unable to create link`);
@@ -132,7 +132,7 @@ app.delete("/link/:id", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   console.log(`deleting link with id: ${req.params.id}`);
 
-  link.findByIdAndDelete(req.params.id, function (err, link) {
+  Link.findByIdAndDelete(req.params.id, function (err, link) {
     if (err) {
       console.log(`unable to delete link`);
       res.status(500).json({
@@ -156,28 +156,28 @@ app.delete("/link/:id", function (req, res) {
 app.patch("/link/:id", function (req, res) {
   console.log(`updating link with id: ${req.params.id} with body`, req.body);
 
-  let updatelink = {};
+  let updateLink = {};
   // name
   if (req.body.name !== null && req.body.name !== undefined) {
-    updatelink.name = req.body.name;
+    updateLink.name = req.body.name;
   }
   // description
   if (req.body.description !== null && req.body.description !== undefined) {
-    updatelink.description = req.body.description;
+    updateLink.description = req.body.description;
   }
   // expired
   if (req.body.expired !== null && req.body.expired !== undefined) {
-    updatelink.expired = req.body.expired;
+    updateLink.expired = req.body.expired;
   }
   // done
   if (req.body.done !== null && req.body.done !== undefined) {
-    updatelink.done = req.body.done;
+    updateLink.done = req.body.done;
   }
 
-  link.updateOne(
+  Link.updateOne(
     { _id: req.params.id },
     {
-      $set: updatelink,
+      $set: updateLink,
     },
     function (err, updateOneResponse) {
       if (err) {
@@ -204,14 +204,14 @@ app.patch("/link/:id", function (req, res) {
 app.put("/link/:id", function (req, res) {
   console.log(`replacing link with id: ${req.params.id} with body`, req.body);
 
-  let updatelink = {
+  let updateLink = {
     name: req.body.name || "",
     description: req.body.description || "",
     done: req.body.done || false,
     expired: req.body.expired || new Date(),
   };
 
-  link.updateOne(
+  Link.updateOne(
     { _id: req.params.id },
     { $set:  updatelink } ,
     function (err, updateOneResponse) {
