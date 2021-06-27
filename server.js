@@ -105,7 +105,7 @@ app.post("/link", function (req, res) {
     name: req.body.name || "",
     description: req.body.description || "",
     linkType: req.body.linkType || "",
-    urls: req.body.urls || "",
+    url: req.body.url || "",
     done: req.body.done || false,
     assigned: req.body.assigned || new Date(),
     updated: req.body.updated || new Date(),

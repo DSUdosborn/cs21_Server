@@ -28,8 +28,8 @@
             <label>Description</label>
             <input type="text" v-model="new_link_description" placeholder="Link Description"><br>
 
-            <label>urls</label>
-            <input type="url" v-model="new_link_urls" placeholder="Link urls"><br
+            <label>url</label>
+            <input type="url" v-model="new_link_url" placeholder="Link url"><br
 
             <label>Link Type</label>
             <input type="text" v-model="new_link_linkType" placeholder="Link type"><br>
@@ -54,7 +54,7 @@
                 <div v-if="link.editing">
                     <input type= "text" v-model= "link.name">
                     <input type= "text" v-model= "link.description">
-                    <input type= "url" v-model= "link.urls">
+                    <input type= "url" v-model= "link.url">
                     <input type= "text" v-model= "link.linkType">
                     <input type= "text" v-model= "link.assigned">
                     <input type= "text" v-model= "link.updated">
@@ -63,7 +63,7 @@
                 <div v-else v-bind:class="{ done: link.done }">
                     <p> <b>{{ link.name }} </b></p><br>
                     <p> {{ link.description }} </p><br>
-                    <p> <a v-bind:href="link.urls">{{link.linkType}}</a></p><br>
+                    <p> <a v-bind:href="link.url">{{link.linkType}}</a></p><br>
                     <p> {{ link.expired }} </p><br>
                 </div>
                 <div v-if="link.editing" class="stackButtons">
