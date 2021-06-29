@@ -101,7 +101,7 @@ app.post("/link", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   console.log(`creating a link with body`, req.body);
 
-  let creatinglink = {
+  let creatingLink = {
     name: req.body.name || "",
     description: req.body.description || "",
     linkType: req.body.linkType || "",
