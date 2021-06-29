@@ -112,7 +112,7 @@ app.post("/link", function (req, res) {
     expired: req.body.expired || new Date(),
   };
 
-  Link.create(creatinglink, (err, link) => {
+  Link.create(creatingLink, (err, link) => {
     // check if there is an error
     if (err) {
       console.log(`unable to create link`);
